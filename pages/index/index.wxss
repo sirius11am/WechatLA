@@ -1,0 +1,326 @@
+@import "../common/lib/weui.wxss";
+
+/**index.wxss**/
+.precontainer{
+  background-color: #af1e23;
+}
+.page-section{
+  width: calc(100% - 120rpx);
+  padding: 0 60rpx;
+  background-image:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAu4AAABvCAIAAAA8DNLJAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyNpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChNYWNpbnRvc2gpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjIxNURGODgzMDVBMjExRTg4RDVDRkVCOUI0NzE0QTRDIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjIxNURGODg0MDVBMjExRTg4RDVDRkVCOUI0NzE0QTRDIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6MjE1REY4ODEwNUEyMTFFODhENUNGRUI5QjQ3MTRBNEMiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6MjE1REY4ODIwNUEyMTFFODhENUNGRUI5QjQ3MTRBNEMiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz5d6fP1AAABwklEQVR42uzWoQ0AIRREwQ+FYOjg6kBcp4egDmo6jyUhIZmRK1e99JUaG97ZlqU/IwAAjjRD9iwAcC8pAwBIGQAAKQMAIGUAACkDACBlAACkDACAlAEApAwAgJQBAJAyAICUAQCQMgAAUgYAQMoAAFIGAEDKAABIGQAAKQMASBkAACkDACBlAAApAwAgZQAApAwAgJQBAKQMAICUAQCQMgAAUgYAkDIAAFIGAEDKAABSBgBAygAASBkAACkDAEgZAAApAwAgZQAAKQMAIGUAAKQMAICUAQCkDACAlAEAkDIAAFIGAJAyAABSBgBAygAAUgYAQMoAAEgZAAApAwBIGQAAKQMAIGUAAKQMACBlAACkDACAlAEApAwAgJQBAJAyAABSBgCQMgAAUgYAQMoAAEgZAEDKAABIGQAAKQMASBkAACkDACBlAACkDAAgZQAApAwAgJQBAKQMAICUAQCQMgAAUgYAkDIAAFIGAEDKAABIGQBAygAASBkAACkDAEgZAAApAwAgZQAApAwAIGUAAKQMAICUAQCQMgCAlAEAkDIAAFIGAJAyAABSBgBAygAASBkAQMoAAEgZAAApAwAQvwADAGy/B86L3qsbAAAAAElFTkSuQmCC');
+  background-size:contain;
+}
+.page-radio-section{
+  width: calc(100% - 120rpx);
+  padding: 0 60rpx;
+  background-image:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAu4AAABvCAIAAAA8DNLJAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyNpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChNYWNpbnRvc2gpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjIxNURGODgzMDVBMjExRTg4RDVDRkVCOUI0NzE0QTRDIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjIxNURGODg0MDVBMjExRTg4RDVDRkVCOUI0NzE0QTRDIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6MjE1REY4ODEwNUEyMTFFODhENUNGRUI5QjQ3MTRBNEMiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6MjE1REY4ODIwNUEyMTFFODhENUNGRUI5QjQ3MTRBNEMiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz5d6fP1AAABwklEQVR42uzWoQ0AIRREwQ+FYOjg6kBcp4egDmo6jyUhIZmRK1e99JUaG97ZlqU/IwAAjjRD9iwAcC8pAwBIGQAAKQMAIGUAACkDACBlAACkDACAlAEApAwAgJQBAJAyAICUAQCQMgAAUgYAQMoAAFIGAEDKAABIGQAAKQMASBkAACkDACBlAAApAwAgZQAApAwAgJQBAKQMAICUAQCQMgAAUgYAkDIAAFIGAEDKAABSBgBAygAASBkAACkDAEgZAAApAwAgZQAAKQMAIGUAAKQMAICUAQCkDACAlAEAkDIAAFIGAJAyAABSBgBAygAAUgYAQMoAAEgZAAApAwBIGQAAKQMAIGUAAKQMACBlAACkDACAlAEApAwAgJQBAJAyAABSBgCQMgAAUgYAQMoAAEgZAEDKAABIGQAAKQMASBkAACkDACBlAACkDAAgZQAApAwAgJQBAKQMAICUAQCQMgAAUgYAkDIAAFIGAEDKAABIGQBAygAASBkAACkDAEgZAAApAwAgZQAApAwAIGUAAKQMAICUAQCQMgCAlAEAkDIAAFIGAJAyAABSBgBAygAASBkAQMoAAEgZAAApAwAQvwADAGy/B86L3qsbAAAAAElFTkSuQmCC');
+  background-size:contain;
+}
+
+.page-radio-section .label{
+  text-align: center;
+  margin:20rpx 0;
+  font-size:0.8em;
+  color:white;  
+  letter-spacing:1rpx;
+}
+
+.page-radio-section .label:last-child{
+  color: black;
+}
+
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.userinfo-avatar {
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+
+.userinfo-nickname {
+  color: #aaa;
+}
+
+.usermotto {
+  margin-top: 200rpx;
+}
+
+.index-hd {
+  width:100%;
+  text-align: center;
+}
+.index-bd {
+  padding: 0 30rpx 40rpx;
+}
+.index-ft {
+  padding-bottom: 20rpx;
+  text-align: center;
+}
+.index-logo {
+  width: 100%;
+  /* height: 86rpx; */
+}
+.index-desc {
+  margin-top: 20rpx;
+  color: #888888;
+  font-size: 28rpx;
+  padding:80rpx;
+}
+
+.radio {
+  margin-right: 20rpx;
+}
+
+.cell{
+  padding:20rpx 30rpx;
+  position:relative;
+  display:-webkit-box;
+  display:-webkit-flex;
+  display:flex;
+  -webkit-box-align:center;
+  -webkit-align-items:center;
+  align-items:center;
+  background-color:white;
+  border-radius:10rpx;
+  margin-top:15rpx;
+}
+.cell_bd{
+  -webkit-box-flex:1;
+  -webkit-flex:1;
+  flex:1;
+  font-size:0.8em;
+}
+
+.chexing-text{
+  margin:50rpx 0 30rpx 0;
+  font-size:0.8em;
+  color:white;
+}
+
+.chexing-wrp{
+  margin-top: 30rpx;
+  color:white;
+}
+
+.chexing-wrp .active{
+  color:#af1e23;
+  background-color: #ffce71;
+}
+
+.chexing-item{
+  width:calc(33.333% - 6rpx);
+  display:inline-block;
+  text-align: center;
+  border: 1rpx solid white;
+  margin-left: -1rpx;
+  margin-top: -1rpx;
+}
+
+.chexing-item text{
+  font-size:0.8em;
+  letter-spacing:1rpx;
+  line-height:3em;  
+}
+
+.hide{
+  display: none;
+}
+
+.show{
+  display: block;
+}
+
+.submit{
+  margin:50rpx 0 50rpx 0;
+}
+
+.submit button{
+  background-color: orange;
+  color: #af1e23;
+  font-size: 0.8em;
+  letter-spacing:2rpx;
+  padding:10rpx 30rpx;
+}
+
+.login{
+  position:fixed;
+  z-index:1000;
+  width:80%;
+  background-color:white;
+  border-radius:20rpx;
+  padding:30rpx;  
+  margin-top: 200rpx;
+  /* display: none; */
+}
+
+.login view{
+  padding:15rpx 10rpx;
+}
+.login .btn-area button{
+  background-color: yellowgreen;
+  color: white;
+}
+
+.xieyiContent{
+  position:absolute;
+  z-index:1000;
+  border-radius:20rpx;
+  padding:30rpx;
+  top:0;
+  margin:0 !important;
+  background-color:#333;
+}
+
+.mask{
+  /* display: none; */
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  opacity: 0.8;
+  z-index: 999;
+}
+
+.login-section{
+  display:flex;
+}
+.login-item{
+  font-size: 0.8em;
+}
+.login-item:nth-child(1){
+  width: 130rpx;
+}
+.login-section button{
+  width:130rpx;
+  padding:0 10px;  
+}
+
+.login-item input{
+  border-bottom: 1px solid #dbdbdb;  
+  border-top:0px;  
+  border-left:0px;  
+  border-right:0px; 
+}
+
+.rules{
+  font-size:0.8em;
+  color:white;
+  margin:0 60rpx;
+}
+
+.rules .head{
+  font-weight: bold;
+  margin: 20rpx 0;
+}
+
+.rules .content{
+  display: block;
+  margin:40rpx 0 0 0;
+}
+
+.rules image{
+  width:40rpx;
+  display:inline-block;
+  overflow:hidden;
+  top:10rpx;
+  position:relative;
+  height:40rpx;
+  margin-right:10rpx;
+}
+.xieyi{
+  text-align:center;
+  padding: 30rpx 0;
+}
+
+.xieyi .checkbox{
+  font-size: small;
+  color:white;
+}
+
+.xieyi text{
+  text-decoration: underline;
+  color: blue;
+  font-size:small;
+}
+
+/* CSS Document */
+.rule-h{
+  font-size: 18px;
+  text-align: center;
+  padding-top: 20px;
+}
+.rule-h2{
+  font-size: 16px;
+  text-align: center;
+  padding-top: 15px;
+}
+.rule-p{
+  padding-top: 10px;
+  font-size: 14px;
+  padding-left:15px;
+  padding-right:15px;
+}
+.rule-p02{
+  font-size: 12px;
+  padding-left:15px;
+  padding-right:15px;
+  padding-top: 4px;
+}
+.rule-red{
+  color:#f00;
+  font-weight: bold;
+}
+.rule-ul{
+  overflow: hidden;
+  padding:20px 15px;
+  font-size: 14px;
+}
+.rule-li{
+  float: left;
+  width: 33.3333%;
+}
+
+.rules .clearFix{
+  height: 20rpx;
+}
+
+.page-radio-section .thank-text .label{
+  color:#ffce71;  
+}
+
+.thank-text{
+  margin:200rpx 0;
+}
+
+.picker{
+  color:gray;
+  background-color:white;
+  margin-top:50rpx;
+  padding: 15rpx 15rpx 15rpx 30rpx;
+
+}
+
+.picker image{
+  width:40rpx;
+  display:inline-block;
+  overflow:hidden;
+  top:10rpx;
+  position:relative;
+  height:40rpx;
+  margin-right:10rpx;
+  float: right;
+}
+
+.pickerPrompt{
+  color: white;
+  font-size: 0.7em;
+}
+
+.picker text{
+  font-size: 0.8em;
+}

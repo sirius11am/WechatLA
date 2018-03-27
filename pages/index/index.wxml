@@ -1,0 +1,184 @@
+<!--index.wxml-->
+<view class="precontainer">
+  <view class="container" id='container'>
+      <image class="index-logo" mode="widthFix" src="resources/bg1.png"></image>
+      <view class='mask' wx:if="{{isShowMask === true}}"></view>
+      <view class='login' wx:if="{{isShowInvestigate === true}}">
+        <view><text>确认会员信息</text></view>
+        <view class="login-section" style="flex-direction:row;">
+          <view class="login-item"><text>姓名</text></view>
+          <view class="login-item"><input bindinput="bindNameInput" name="input" placeholder="" value="{{nickName}}"/></view>
+          <view class="login-item"><button type="default" size="mini"></button></view>
+        </view>
+        <view class="login-section" style="flex-direction:row;">
+          <view class="login-item"><text>手机号</text></view>
+          <view class="login-item"><input bindinput="bindPhonenumberInput" type="number" name="input" placeholder="" value="{{phoneNumber}}" disabled="{{isGetPhonenumber}}"/></view>
+          <view class="login-item"><button open-type="getPhoneNumber" type="default" size="mini"  bindgetphonenumber="getPhoneNumber" type="primary" disabled="{{buttonDisabled}}" loading="{{loading}}">{{ttGetPhoneNumber}}</button></view>
+        </view>
+        <view class="btn-area">
+            <button formType="submit" bindtap="TapPhoneName">确定</button>
+        </view>
+      </view>
+    
+      <view class="page-radio-section thank" wx:if="{{isShowThank}}">
+        <view class="label"><text>推荐亲友购车成功，即可各领取200元现金红包！</text></view>
+        <view class="thank-text">
+            <view class="label"><text>{{ttThankPrompt}}</text></view>
+            <view class="label"><text>奇瑞感谢您的陪伴</text></view>
+        </view>
+        <view class="thank-page-padding-bottom" style="height:{{padding_bottom_height}}px; width:100%;"></view>
+      </view>
+
+      <view class="page-radio-section" wx:if="{{!isShowThank}}">
+          <view class="label"><text>推荐亲友购车成功，即可各领取200元现金红包！</text></view>
+          <view class="cells">
+            <radio-group bindchange="radioChange">
+              <label class="cell" wx:for="{{items}}" wx:key="{{item.value}}" data-id="{{item.value}}">
+                <view class="cell_bd">{{item.name}}</view>
+                <view class="cell_hd">
+                  <radio value="{{item.value}}" color="orange" checked="{{item.checked}}"/>
+                </view>
+              </label>
+            </radio-group>
+          </view>
+      </view>
+
+      <view class="page-section" wx:if="{{!isShowThank}}">
+        <view wx:if="{{isShowChexing === true}}">
+            <view class="chexing-text"><text>您打算购买哪款车型？</text></view>
+            <view class="chexing-wrp">
+                <view class="chexing-item {{chexing[index].className}}" wx:for="{{chexing}}" wx:key="{{index}}" bindtap="TapChexing" data-index="{{index}}"><text>{{chexing[index].model_name}}</text></view>
+            </view>    
+        </view>
+        
+        <view class="section">
+          <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+            <view class="picker">
+              <text wx:if="{{isUsedPicker}}">{{multiArray[0][multiIndex[0]]}}，{{multiArray[1][multiIndex[1]]}}，{{multiArray[2][multiIndex[2]]}}</text>
+              <text wx:else>点击选择经销商</text>
+              <!-- <icon type="info" size="30" color="#af1e23" style="float: right;"/> -->
+              <image src="resources/V.png" mode="aspectFit"></image>
+            </view>
+          </picker>
+          <view wx:if="{{isUsedPicker}}" class="pickerPrompt">经销商地址：<view>{{jxsData[multiIndex[0]].city[multiIndex[1]].jxs[multiIndex[2]].addr}}</view></view>
+        </view>
+
+        <view class="submit"><button bindtap="TapSubmit">{{loadingSubmit.text}}</button></view>
+      </view>
+      <image class="index-logo" mode="widthFix" src="resources/bg3.png"></image>
+  </view>
+  <view class="rules" wx:if="{{!isShowThank}}">
+      <image src="resources/yuanbao.png" mode="aspectFit"></image>
+      <text class="head">活动规则：</text>
+      <text class="content">1、关注“奇瑞车主俱乐部“用户将自动获得财神贺卡，或回复关键字”财神到“获得。</text>
+      <text class="content">2、您推荐的好友关注奇瑞车主俱乐部后，他参加本小程序互动，留下资料我们会电话回访，同时也成为奇瑞车主俱乐部经纪人。</text>
+      <text class="content">3、如推荐的好友购车成功，推荐人和被推荐人均可获得200元现金红包。</text>
+      <text class="content">4、请购车前一定在此小程序中留下个人手机号码，只有购车前在此留下手机号码，才能享受本活动权益。</text>
+      <text class="content">5、本活动第一批限量十万名，追加第二批限量十万名，总量有限，先到先得。</text>
+      
+      <view class="clearFix"></view>
+
+      <image src="resources/yuanbao.png" mode="aspectFit"></image>
+      <text class='head'>注意事项：</text>
+      <text class="content">1. 用户预留信息需与购车留档信息一致，预留信息时间须早于购车时间，且于2018年2月15日- 3月31日间完成购车，方可获得现金奖励。</text>
+      <text class="content">2. 本活动权益不与其他推荐类的活动冲突。</text>
+      <text class="content">3. 每个人只有一个唯一的推荐人。</text>
+      <text class="content">4. 禁止经销商工作人员借经纪人活动刷单，一经查实，将停止该经销商一切电商活动；</text>
+      <text class="content">5. 本活动最终解释权归奇瑞所有。</text>
+  </view>
+  <view class="xieyi" wx:if="{{!isShowThank}}">
+      <checkbox-group bindchange="checkboxChange">
+          <label class="checkbox">
+            <checkbox value="" checked="true"/>已阅读并同意注册奇瑞官网
+          </label>
+          <text bindtap="TapXieyi">服务协议</text>
+        </checkbox-group>
+        
+  </view>
+  <view class="xieyiContent rules" wx:if="{{isShowXieyi === true}}" bindtap="TapXieyiContent">
+    <view>
+      <view class="rule-h">奇瑞汽车车主俱乐部规则</view>
+      <view class="rule-h2">第一章 总则</view>
+      <view class="rule-p">欢迎加入奇瑞汽车车主俱乐部。奇瑞汽车车主俱乐部是专为奇瑞车主而设立，以会员制为中心，通过搭建俱乐部微信服务号与PC端（以下简称俱乐部线上平台），联动终端销售服务商，以线上线下结合的方式，向会员提供多种服务关怀和车主互动的官方平台。</view>
+      <view class="rule-p">积分的累积将决定您的会员级别，进而决定您将获得的会员权益。会员需通过俱乐部线上平台进行注册并认证成功后可在全国任意一家指定销售服务商处通过相关服务消费获得相应积分，也可以在俱乐部线上平台参与互动获得积分。</view>
+      <view class="rule-p">我们诚邀您的加入，奇瑞汽车车主俱乐部将始终秉承“奇瑞服务 用心为你”的服务理念，竭诚为您提供更便捷、更专业、更周到的服务！</view>
+      <view class="rule-h2">第二章 入会细则</view>
+      <view class="rule-p">本章节向您介绍车主俱乐部关于会员注册、会员积分、会员权益等基本情况，请您详细阅读。</view>
+      <view class="rule-p">奇瑞汽车车主俱乐部会员分为普卡会员、银卡会员、金卡会员（会员级别名称暂定），普卡会员权益在注册并认证（完善车辆及相关信息）成功后即可享受，金/银卡会员需要通过积分累积进行升降。</view>
+      <view class="rule-p">1、普卡会员申请：通过关注"奇瑞车主俱乐部"官方微信并完成线上注册。</view>
+      <view class="rule-p02">1.1关注“奇瑞车主俱乐部”官方微信。</view>
+      <view class="rule-p02">1.2注册：点击申请填写姓名、手机号码、手机验证码。</view>
+      <view class="rule-p02">1.3认证：填写车架号及车主相关信息，认证成功后享受普卡会员权益。</view>
+      
+      <view class="rule-p">2、金/银卡升降级：通过积分累积进行升降级。</view>
+      <view class="rule-p02">2.1积分来源：终端销售服务商维保消费、线上互动积分获取。</view>
+      <view class="rule-p02">2.2积分有效期：24个月。例如：普卡会员于2016年8月1日获得1000积分，该笔积分如果一直没有使用，则将于2018年7月31日失效。</view>
+      <view class="rule-p02">2.3积分累积和使用：会员通过到店消费（不含保修、购买精品）或参加活动可获取积分，积分的累积自会员认证成功之日起开始计算。积分获取规则详情见“奇瑞车主俱乐部”</view>
+
+      <view class="rule-h2">第三章 会员义务</view>
+      <view class="rule-p">1、会员请自觉遵守法律法规，不发表违法言论，同时自觉维护俱乐部的声誉。</view>
+      <view class="rule-p">2、为了确保您的会员权益，请认真填写注册信息并确认信息真实有效。若您的资料出现变更（尤其车牌、电话、地址等），请及时登录车主俱乐部官方微信进行修改。您的个人资料，车主俱乐部将仅用来进行积分和专项服务的运作管理。所有个人资料均按奇瑞汽车车主俱乐部资料隐私政策进行管理。
+        <view class="rule-p">3、俱乐部论坛规则见《奇瑞汽车车主俱乐部论坛规则》。</view>
+      </view>
+      
+      <view class="rule-h">奇瑞汽车车主俱乐部论坛规则</view>
+      <view class="rule-h2">第一章 总则</view>
+      <view class="rule-p">1、欢迎加入奇瑞汽车车主论坛，车主论坛立足于打造车友交流平台，共同分享与车与人的生活点滴。积分的累积将决定您的论坛级别，进而决定您将获得的权益。 </view>
+      <view class="rule-p">2、在注册本论坛帐号、昵称和发表帖子之前，请仔细阅读本规则。 参与本论坛的一切活动，均视为已熟悉并接受了本规则所规定的所有条款。</view>
+      <view class="rule-p">3、请您遵守中华人民共和国有关法律、法规，遵守《互联网电子公告服务管理规定》和《全国人民代表大会常务委员会关于维护互联网安全的决定》，独立承担一切因您行为而直接或间接引起的法律责任。</view>
+      <view class="rule-p">4、用户在使用奇瑞汽车车主俱乐部论坛服务过程中，必须遵循以下原则：</view>
+      <view class="rule-p02">(a) 遵守法律法规、社会主义制度、国家利益、公民合法权益、公共秩序、社会道德风尚和信息真实性；</view>
+      <view class="rule-p02">(b) 不得为任何非法目的而使用本论坛；</view>
+      <view class="rule-p02">(c) 遵守所有与网络服务有关的网络协议、规定和程序；</view>
+      <view class="rule-p02">(d) 不得利用奇瑞汽车车主俱乐部论坛服务系统进行任何可能对互联网的正常运转造成不利影响的行为；</view>
+      <view class="rule-p02">(e) 不得利用奇瑞汽车车主俱乐部论坛服务系统传输任何骚扰性的、中伤他人的、辱骂性的、恐吓性的、庸俗淫秽的或其他任何非法的信息资料；</view>
+      <view class="rule-p02">(f) 不得利用奇瑞汽车车主俱乐部论坛服务系统进行任何不利于奇瑞品牌的行为。</view>
+      <view class="rule-h2">第二章 账号注册及管理</view>
+      <view class="rule-p">1、账号注册原则：</view>
+      <view class="rule-p02">(a)不得以党和国家领导人的名字、国家机构、企业名称、网络禁忌语注册；  </view>
+      <view class="rule-p02">(b)不得注册不文明、不健康的ID或昵称；  </view>
+      <view class="rule-p02">(c)请勿以其他名人的真实姓名、字号、艺名、笔名作为昵称，勿用名人照片做头像； </view>
+      <view class="rule-p02">(d)请勿注册易产生歧义、引起他人误解的昵称；   </view>
+      <view class="rule-p02">(e)网友在注册帐号时，应提供本论坛要求提供的必要信息，如个人资料有任何变动，必须及时更新。</view>
+      <view class="rule-p">2、账户冻结：</view>
+      <view class="rule-p02">(a)本论坛管理员拥有管理所有帐号的权力，对用户提交的账号名称、头像和简介等注册信息有权进行审核，若帐号含有违法和不良信息的，将向其发送系统消息提出警告。经警告无效，管理员有权在不事先通知的情况下，暂时或永久冻结该帐号，或封杀该帐号所用IP地址申请新帐号的权限；</view>
+      <view class="rule-p02">(b) 因ID涉及到个人稳私或他人利益，帐号不允许借用，一经发现，永久冻结此帐号。</view>
+      <view class="rule-p">3、账号安全与管理</view>
+      <view class="rule-p02">(a) 用户注册成功后，将给予每个用户一个用户账号及相应的密码，该用户账号和密码由用户负责保管；用户应当对以其用户账号进行的所有活动和事件负法律责任；</view>
+      <view class="rule-p02">(b)如果您未保管好自己的账号和密码而对您、奇瑞品牌或第三方造成了损害，您将负全部责任。您可随时改变您的密码和图标，也可以注销旧的帐户重开一个新帐户；用户在发现任何非法使用用户账号或安全漏洞的情况，立即通知本论坛管理员。</view>
+      <view class="rule-h2">第三章 发帖管理</view>
+      <view class="rule-p">1、 不得发布含有下列内容之一的信息：  </view>
+      <view class="rule-p02">(a)反对宪法所确定的基本原则的； </view>
+      <view class="rule-p02">(b)危害国家安全，泄露国家秘密，损害国家荣誉和利益的 ； </view>
+      <view class="rule-p02">(c)散布谣言，淫秽、色情、赌博、暴力、凶杀、恐怖或者教唆犯罪、扰乱社会秩序的；</view>
+      <view class="rule-p02">(d)含有攻击个人、企业或其他汽车竞品内容的；</view>
+      <view class="rule-p02">(e)含有宗教信仰传播、党派言论等内容的；</view>
+      <view class="rule-p02">(f)含有法律、行政法规禁止的其他内容的； </view>
+      <view class="rule-p">2、请注意使用文明用语，请勿张贴对任何人进行人身攻击、谩骂、诋毁的言论。     </view>
+      <view class="rule-p">3、不得恶意灌水，不允许重复出现纯水帖，如：灌，哈哈，好，哦，路过，ttt，？？？……贴图必须附有一定的说明，否则也将当作纯水贴，完全相同的帖子请勿一文多发。</view>
+      <view class="rule-p">4、不得恶意刷屏。于15分钟内，连续发布6个主题，或者连续回复帖子超过10个，造成版面前10个回复都为同一人的，认定为刷屏。 </view>
+      <view class="rule-p">5、尽量少发转贴，过多转帖不仅无实际意义，而且占用论坛资源，请喜欢转贴的朋友配合。</view>
+      <view class="rule-p">6、本论坛禁止寻找枪手、关于网络赚钱之类的和其他一切公然寻求造假的帖子，一经发现立即删除。与讨论有关的广告只能发于相应的版面，且请在24小时后自行删除。 </view>
+      <view class="rule-h2">第四章 文章管理</view>
+      <view class="rule-p">1、管理员有权在未进行事先通知的情况下删除任何违规文章；</view>
+      <view class="rule-p">2、网友若对删帖有异议，可以在相关版块提出质询，相关工作人员负责解释； </view>
+      <view class="rule-p">3、对违反本规则的帖子，任何用户均可以向版主或管理员举报；</view>
+      <view class="rule-p">4、管理员拥有管理版面的全部权力，对特定帖子，管理员在必要时可以关闭该帖；</view>
+      <view class="rule-p">5、违规文章处罚规定，详情见“奇瑞车主俱乐部”</view>
+      <view class="rule-h2">第五章 积分管理</view>
+      <view class="rule-p">本论坛对认证车主采取积分制度模式： 积分则是代表用户换购商品的唯一依据。</view>
+      <view class="rule-p">1、会员互动，发帖回帖奖励1分，每日上限5分；</view>
+      <view class="rule-p">2、文章被加精华，奖励200分；</view>
+      <view class="rule-p">3、举报他人论坛违规核查属实奖励10分；</view>
+      <view class="rule-h2">第六章 隐私保护</view>
+      <view class="rule-p">除非根据法律或国家机关的强制性规定，在未得到您的许可之前，我们不会把您的任何个人信息提供给任何无关的第三方（包括公司或个人）。</view>
+      <view class="rule-h2">第七章 关于版权 </view>
+      <view class="rule-p">1、发于本论坛的所有帖子均只代表发帖者个人观点，不代表本论坛观点。</view>
+      <view class="rule-p">2、发帖者原创且在本论坛首发的帖子，发帖者保证其原创内容不侵犯任何第三者的权益，否则由发帖者承担责任；若用于在其他媒体出版，请事先与版权方联系。</view>
+      <view class="rule-p">3、若转帖请注明作者、出处、时间，并保持内容完整，并请注意原发表单位的版权声明，并承担由此可能产生的版权责任。</view>
+      <view class="rule-p">4、凡是发布于本论坛的帖子或跟帖，本论坛网站有免费使用权。</view>
+          </view>
+  </view>
+  <view class="page-padding-bottom" style="height:{{padding_bottom_height}}px; width:100%;"></view>
+</view>
+

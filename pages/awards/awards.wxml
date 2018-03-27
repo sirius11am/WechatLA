@@ -1,0 +1,98 @@
+<!--index.wxml-->
+<view class="container">
+    <view class="section row-section" style="flex-direction:row;">
+        <view class="cIntroducerPrompt PADDINGLEFT"><text>我的推荐人：</text></view>
+        <view class="cIntroducer"><text>{{ttIntroducer}}</text></view>
+    </view>
+    <view class="cIntroducerListPrompt"></view>
+            
+    <view class="clearFix20rpx"></view>
+    <view class="section"><view class="cXiaxianPrompt"><view><text>我的红包状态</text></view></view></view>
+
+    <view wx:if="{{isLoadingFlagHaveFriend}}" class="loading"><text>加载中</text></view>
+    <view wx:else class="section">
+        <view class="section_row" style="flex-direction:row;">
+            <view wx:if="{{userinfo.xiaochengxumoney != 0}}" class="yihuode"><image mode="widthFix" src="resources/xhdhb_hl1.png"></image></view>
+            <view wx:elif="{{userinfo.xiaochengxumoney == 0 && userinfo.intentionType != null}}" class="yihuode"><image mode="widthFix" src="resources/xhdhb_hl2.png"></image></view>
+            <view wx:else class="weihuode" bindtap="TapWeihuode"><image mode="widthFix" src="resources/xhdhb.png"></image></view>
+            <view><text>参与小程序，就有机会获得最高50元随机金额红包</text></view>
+        </view>
+        <view class="section_row" style="flex-direction:row;">
+            <view wx:if="{{userinfo.gouchehongbao}}" class="yihuode"><image mode="widthFix" src="resources/xbrgc_hl.png"></image></view>
+            <view wx:else class="weihuode" bindtap="TapWeihuode"><image mode="widthFix" src="resources/xbrgc.png"></image></view>
+            <view><text>参与小程序，购车后，即可获得200元</text></view>
+        </view>
+        <view class="section_row" style="flex-direction:row;">
+            <view wx:if="{{userinfo.intromoney}}" class="yihuode"><image mode="widthFix" src="resources/xjsgc_hl.png"></image></view>
+            <view wx:else class="weihuode" bindtap="TapWeihuode"><image mode="widthFix" src="resources/xjsgc.png"></image></view>
+            <view><text>好友参与小程序，购车后，即可获得200元</text></view>
+        </view>
+        <view class="section_row" style="flex-direction:row;">
+            <view wx:if="{{userinfo.friendcount>=constXiaxian}}" class="yihuode"><image mode="widthFix" src="resources/xyqhb_hl.png"></image></view>
+            <view wx:else class="weihuode" bindtap="TapWeihuode"><image mode="widthFix" src="resources/xyqhb.png"></image></view>
+            <view><text>邀请{{constXiaxian}}位好友加入，获得最高50元随机金额红包</text></view>
+        </view>
+
+        <view wx:if="{{userinfo.friendcount<constXiaxian && !isLoadingFlagHaveFriend}}" class="section_row_nolimit" style="flex-direction:row;" wx:for="{{arrFriends}}">
+            <view><text>邀请 {{item.nickname}} 加入成功</text></view>
+        </view>
+        <view wx:if="{{userinfo.friendcount<constXiaxian && !isLoadingFlagHaveFriend}}" class="section_row_nolimit" style="flex-direction:row;">
+            <view><text>再邀请{{constXiaxian-userinfo.friendcount}}位好友，即可获得红包</text></view>
+        </view>
+    </view>
+
+    <view class="section" wx:if="{{!isLoadingFlagHaveFriend}}">
+        <view class="cWuxiaxianPrompt" wx:if="{{isNOTHaveFriend}}"><text>您推荐的亲友还未购车，暂时还没有奖励金</text></view>
+        
+        <view class="section" wx:if="{{!isNOTHaveFriend}}">
+            <view wx:for="{{arrFriends}}" hidden="{{isShowHuodongshuoming}}">
+                <view class="cIntroducerListPrompt"></view>
+                <view class="row-section cFriends" style="flex-direction:row;">
+                    <view class="cHeadimg MARGINLEFT">
+                        <image mode="scaleToFill" src="{{item.headimgurl == 0 ? 'https://image.chezhubidu.com/touxiangwufaxianshi.png' : item.headimgurl }}"></image>
+                    </view>
+                    <view class="cUserinfo"><text>{{item.nickname}}</text></view>
+                </view>
+                <view class="cHaoyouHongbaoPrompt"><view><text>好友红包状态</text></view></view>
+                <view class="cHaoyouHongbao">
+                    <view wx:if="{{item.xiaochengxumoney != 0}}"><image mode="widthFix" src="resources/hd_hl1.png"></image></view>
+                    <view wx:elif="{{item.xiaochengxumoney == 0 && item.intentionType != null}}"><image mode="widthFix" src="resources/hd_hl2.png"></image></view>
+                    <view wx:else class="weihuode" bindtap="TapWeihuode"><image mode="widthFix" src="resources/hd.png"></image></view>
+            
+                    <view wx:if="{{item.gouchehongbao}}"><image mode="widthFix" src="resources/brgc_hl.png"></image></view>
+                    <view wx:else class="weihuode" bindtap="TapWeihuode"><image mode="widthFix" src="resources/brgc.png"></image></view>
+
+                    <view wx:if="{{item.intromoney}}"><image mode="widthFix" src="resources/jsgc_hl.png"></image></view>
+                    <view wx:else class="weihuode" bindtap="TapWeihuode"><image mode="widthFix" src="resources/jsgc.png"></image></view>
+
+                    <view wx:if="{{item.friendcount>=constXiaxian}}"><image mode="widthFix" src="resources/yq_hl.png"></image></view>
+                    <view wx:else class="weihuode" bindtap="TapWeihuode"><image mode="widthFix" src="resources/yq.png"></image></view>
+                </view>
+                <view class="cHaoyouGouChePrompt"><view><text>好友购车状态</text></view></view> 
+                <view class="cHaoyouGouChe">
+                    <view wx:if="{{item.intentionType != null}}"><text class="active">参与小程序</text></view>
+                    <view wx:else><text class="inactive" bindtap="TapWeihuode">参与小程序</text></view>
+
+                    <view><text class="cDian">•••</text></view>
+                    
+                    <view wx:if="{{item.intentionType=='0'}}"><text class="active">打算购买</text></view>
+                    <view wx:else><text class="inactive" bindtap="TapWeihuode">购车意向</text></view>
+                    
+                    <view><text class="cDian">•••</text></view>
+
+                    <view wx:if="{{item.gouche}}"><text class="active" >已经购车</text></view>
+                    <view wx:else><text class="inactive" bindtap="TapWeihuode">是否购车</text></view>
+                </view>
+                <view class="cHaoyouGouCheBottomPrompt">
+                    <view><text>好友完成以上三步，当购车成功时，您与好友即可获得200 元，快去提醒他吧！ </text></view>
+                    <view><text>*购车意向为奇瑞客服致电为准。</text></view>
+                </view>
+            </view>
+        </view>
+    </view>
+        
+    <view class="clearFix20rpx"></view>
+    <view class="huodongshuoming" hidden="{{!isShowHuodongshuoming}}" bindtap="TapHuodongshuoming">
+        <image mode="widthFix" src="../../image/guize.png"></image>
+    </view>
+</view>

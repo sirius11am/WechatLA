@@ -1,0 +1,42 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/friends/friends",
+    "pages/awards/awards",
+    "pages/qrcode/qrcode"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle":"black",
+    "backgroundTextStyle": "dark"
+  },
+  "tabBar": {
+    "color": "#7A7E83",
+    "selectedColor": "#af1e23",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [{
+      "pagePath": "pages/index/index",
+      "iconPath": "image/icon_home.png",
+      "selectedIconPath": "image/icon_home_hl.png",
+      "text": "首页"
+    }, {
+      "pagePath": "pages/qrcode/qrcode",
+      "iconPath": "image/icon_zhiwen.png",
+      "selectedIconPath": "image/icon_zhiwen_hl.png",
+      "text": "二维码"
+    }, {
+      "pagePath": "pages/friends/friends",
+      "iconPath": "image/icon_friends.png",
+      "selectedIconPath": "image/icon_friends_hl.png",
+      "text": "规则"
+    }, {
+      "pagePath": "pages/awards/awards",
+      "iconPath": "image/icon_awards.png",
+      "selectedIconPath": "image/icon_awards_hl.png",
+      "text": "奖金"
+    }]
+  }
+}

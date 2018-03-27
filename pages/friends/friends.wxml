@@ -1,0 +1,26 @@
+<!--index.wxml-->
+<view class="container">
+    <view class="clearFix20rpx"></view>
+    <image class="index-logo" mode="widthFix" src="../../image/guize.png"></image>
+
+    <view class="section">
+        <button class="cGeneratePoster orange" type="warn" size="default" loading="{{loading}}"
+        disabled="{{disabled}}" bindtap="generatePoster"> 马上生成邀请海报 </button>
+    </view>
+
+    <view class="rules">
+        <view class="clearFix20rpx"></view>
+        <text class="head">如何获得最高50元的随机金额红包：</text>
+        <text class="content"><text class="head">规则1：</text>在购车前参与小程序互动，可能获得最高50元的随机金额红包。</text>
+        <text class="content"><text class="head">规则2：</text>把自己的二维码发给朋友，请他们“长按识别二维码”，系统自动记录您为他的推荐人，且会在您的本页面和他的本页面明确体现。</text>
+        <text class="content"><text class="head">规则3：</text>推荐人仅有一位，不可改变！ 如果您的亲友已经被别人推荐参加活动，则您不能成为他的推荐人。当您推荐的人超过三位时，您会获得一份最高50元的随机金额红包。</text>
+
+        <view class="clearFix20rpx"></view><view class="clearFix20rpx"></view>
+        <text class="head">如何获得奖励金：</text>
+        <text class="content"><text class="head">规则1：</text>如果您自己购车，在您购车前，您已经在本小程序的首页留下手机号码。则当您购车成功后7个工作日内，200元现金红包自动通过“奇瑞车主俱乐部“微信服务号发送红包给您。 您的购车成功以当地4S店上报给奇瑞公司为准。</text>
+        <text class="content"><text class="head">规则2：</text>如果您推荐的任何一位朋友（在本页面您的推荐人下）在活动期间购车，并满足规则1的条件，除了他会收到200元现金红包外，您也会收到200元现金红包。</text>
+        <text class="content"><text class="head">规则3：</text>200元现金红包总数量不限，但车主购车时间需在2018年2月15日~3月31日。</text>
+    </view>
+    <view class="clearFix20rpx"></view><view class="clearFix20rpx"></view>
+
+</view>
