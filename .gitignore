@@ -1,4 +1,4 @@
 project.config.json
-/image/*
-/pages/awards/resources/*
-/pages/index/resources/*
+image/*
+pages/awards/resources/*
+pages/index/resources/*
